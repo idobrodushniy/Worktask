@@ -5,7 +5,7 @@ services:
     image: postgres
   web:
     build: .
-    command: /bin/bash -c "pip install -r requirements.txt && exec invoke run_dev"
+    command: /bin/bash -c " exec invoke run_dev"
     volumes:
       - .:/worktask
     ports:

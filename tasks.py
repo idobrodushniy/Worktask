@@ -16,6 +16,7 @@ def wait_port_is_open(host, port):
 @task
 def reset_db(ctx):
     wait_port_is_open('db', 5432)
+    ctx.run('pip install -r requirements.txt')
 
 @task
 def run_dev(ctx):
