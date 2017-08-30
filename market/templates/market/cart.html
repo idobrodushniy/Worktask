@@ -1,0 +1,57 @@
+{% extends "market/main.html" %}
+{% block content %}
+<h1 style="text-align: center">YOUR CART</h1>
+
+	<table class = mytable>
+		<thead >
+		<tr >
+			<th style = "display: none;" ><strong>ID</strong></th>
+			<th><strong>Goods</strong></th>
+			<th><strong>Quantity</strong></th>
+			<th><strong>Delete</strong></th>
+		</tr>
+		</thead>
+		
+		<tbody>
+			{% for i in items %}
+			<form method = "POST">{% csrf_token %}
+			
+				<tr>
+					<td style = "display: none;">
+						<input  type="text" name="id" value = "{{i.id}}">
+					</td>
+					<td >{{i.name_id}}</td>
+					<td>{{i.quantity}}</td>
+					<td >
+					<input type = 'Submit' name = "Delete" value = 'Delete'>
+					</td>
+				</tr>
+			</form>
+			{% endfor %}
+		</tbody>
+		</table>
+	<form class = 'paybutton' method = 'POST'>{% csrf_token %}
+		<input type="Submit" name ='Pay' value = "Pay" >
+	</form>
+	{% if finally %}
+	<style type="text/css">
+		.mytable{
+			display: none;
+		}
+		.paybutton{
+			display: none;
+		}
+	</style>
+	<br>
+		<form method = 'POST' class = "results"> {% csrf_token %}
+		{% for i in total_list %}
+			{{i}}<br><br>
+		{% endfor %}
+		<label><b>Total price:</b></label> {{total_price}}$<br><br>
+		<div>
+		<button class = 'backbutton'><a href="{% url 'cart'  %}"></a>Back</button>
+		<input class = "submitbutton" type="submit" name="Paid out" value ="Continue>>">
+		</div>
+		</form>
+	{% endif %}
+{% endblock %}

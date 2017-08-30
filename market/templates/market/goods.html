@@ -1,0 +1,23 @@
+{% extends "market/main.html" %}
+{% block content %}
+<form>
+      <b>{{select_form}}</b>
+      <input type="submit" value="Select product">
+</form>
+  
+  {% if pcount  %} 
+    <form method = "POST">{% csrf_token %}
+        <b>{{form}}</b>
+        <input type="submit" value="Add to my cart">
+    </form>
+  {% endif %}
+    
+ 
+  {% if pkg %}
+    <form method = "POST">{% csrf_token %}
+        <b>{{form}}</b> 
+        <input type="submit" value="Add to my cart">
+    </form>
+  {% endif %}
+
+{% endblock %}

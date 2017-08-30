@@ -1,0 +1,13 @@
+[ 
+    {"model": "market.sell_types", "pk": 1, "fields": {"type": "Per quantity"}},
+    {"model": "market.sell_types", "pk": 2, "fields": {"type": "Per kg"}},
+    {"model": "market.sell_types", "pk": 3, "fields": {"type": "Something free"}},
+    {"model": "market.goods", "pk": "A", "fields": {"price": 0.5, "sell_type": 1}},
+    {"model": "market.goods", "pk": "B", "fields": {"price": 0.3, "sell_type": 1}},
+    {"model": "market.goods", "pk": "C", "fields": {"price": 1.99, "sell_type": 2}},
+    {"model": "market.goods", "pk": "D", "fields": {"price": 1.2, "sell_type": 3}},
+    {"model": "market.goods", "pk": "E", "fields": {"price": 0.9, "sell_type": 1}},
+    {"model": "market.per_count", "pk": "A", "fields": {"discount_quantity": 3, "price_quantity": 1.3}},
+    {"model": "market.per_count", "pk": "B", "fields": {"discount_quantity": 2, "price_quantity": 0.45}},
+    {"model": "market.smth_free", "pk": "D", "fields": {"quantity_to_get": 2, "item": "E", "item_quantity": 1}}
+]
