@@ -1,14 +1,21 @@
-version: '3'
+db:
+  image: postgres:9.6
+  environment:
+    - POSTGRES_USER=postgres
+  volumes:
+    - ./:/web
 
-services:
-  db:
-    image: postgres
-  web:
-    build: .
-    command: /bin/bash -c " exec invoke run_dev"
-    volumes:
-      - .:/worktask
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
+django:
+  image: adolgarev/python2:1473852567
+  volumes:
+    - ./:/web
+  working_dir: /web
+  links:
+    - db:db
+  expose:
+    - "9000"
+  ports:
+    - "9000:9000"
+  environment:
+    - DJANGO_SETTINGS_MODULE=worktask.settings
+  command: /bin/bash -c "pip install -r requirements.txt && exec invoke run_dev"

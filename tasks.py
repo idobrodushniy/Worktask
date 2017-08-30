@@ -16,9 +16,12 @@ def wait_port_is_open(host, port):
 @task
 def reset_db(ctx):
     wait_port_is_open('db', 5432)
-    ctx.run('pip install -r requirements.txt')
+    ctx.run('python manage.py dbshell < clear.sql')
+    ctx.run('python manage.py migrate --noinput')
+    ctx.run('python manage.py collectstatic --noinput')
+    ctx.run('python manage.py loaddata mydata.json ')
 
 @task
 def run_dev(ctx):
     reset_db(ctx)
-    ctx.run('python manage.py runserver 0.0.0.0:8000')
+    ctx.run('uwsgi --ini uwsgi_dev.ini')
